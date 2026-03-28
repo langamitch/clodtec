@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react'
 
 const Page = () => {
   const [time, setTime] = useState('')
+  const [menuOpen, setMenuOpen] = useState(false)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const innerScrollRef = useRef<HTMLDivElement>(null)
   const progressRef = useRef<HTMLDivElement>(null)
@@ -15,8 +16,7 @@ const Page = () => {
         new Date().toLocaleTimeString('en-US', {
           hour: '2-digit',
           minute: '2-digit',
-          second: '2-digit',
-          hour12: true,
+          hour12: false,
         })
       )
     }
@@ -24,6 +24,12 @@ const Page = () => {
     const id = setInterval(update, 1000)
     return () => clearInterval(id)
   }, [])
+
+  // Lock body scroll when sidebar is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
 
   useEffect(() => {
     const wrapper = wrapperRef.current
@@ -65,14 +71,88 @@ const Page = () => {
 
   return (
     <div>
+
+      {/* ── FULLSCREEN MOBILE SIDEBAR ── */}
+      <div
+        className={`
+          fixed inset-0 z-50 bg-black flex flex-col
+          transition-transform duration-500 ease-in-out lg:hidden
+          ${menuOpen ? 'translate-x-0' : 'translate-x-full'}
+        `}
+      >
+        {/* Close button — top right, matches reference ✕ */}
+        <button
+          onClick={() => setMenuOpen(false)}
+          aria-label='Close menu'
+          className='absolute top-5 right-5 text-white text-2xl leading-none font-light'
+        >
+          ✕
+        </button>
+
+        {/* Big nav links — top left, huge bold like reference */}
+        <nav className='flex flex-col px-4 pt-6'>
+          {['HOME', 'WORK', 'ABOUT'].map((item) => (
+            <span
+              key={item}
+              onClick={() => setMenuOpen(false)}
+              className='text-white font-bold cursor-pointer uppercase leading-12 hover:opacity-50 transition-opacity'
+              style={{
+                fontSize: 'clamp(3.5rem, 20vw, 4rem)',
+              }}
+            >
+              {item}
+            </span>
+          ))}
+        </nav>
+
+        {/* Bottom section */}
+        <div className='flex-1 flex flex-col justify-end pb-10'>
+          {/* Info block — centered */}
+          <div className='flex flex-col items-center text-center text-white text-sm gap-5'>
+
+            {/* Locations / time */}
+            <div className='flex flex-col gap-0.5 leading-snug'>
+              <span>Durban {time}</span>
+              <span>South Africa 29.8587° S</span>
+              <span>31.0218° E</span>
+            </div>
+
+            {/* Contact */}
+            <div className='flex flex-col gap-0.5 leading-snug'>
+              <span>Work with us:</span>
+              <span className='underline cursor-pointer'>hello@cloudtec.studio</span>
+              <span>Founder: Wandile (Kenzo)</span>
+            </div>
+
+            {/* Socials */}
+            <div className='flex flex-col gap-0.5 leading-snug'>
+              <span className='underline cursor-pointer'>Instagram</span>
+              <span className='underline cursor-pointer'>LinkedIn</span>
+            </div>
+
+            {/* Legal */}
+            <div className='flex flex-col gap-0.5 leading-snug text-white/50 text-xs'>
+              <span className='underline cursor-pointer'>Privacy Policy</span>
+              <span className='underline cursor-pointer'>Terms of Use</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
       {/* ── HERO SECTION ── */}
       <div className='grid p-4 sm:p-6 lg:p-8 grid-cols-4 lg:grid-cols-12 gap-4 min-h-screen'>
 
-        {/* Nav: shown at top on mobile only, hidden on lg (rendered in its own column on lg) */}
-        <div className='col-span-4 flex justify-end gap-4 lg:hidden'>
-          <span className='text-sm font-bold mono cursor-pointer text-white/80'>WORK</span>
-          <span className='text-sm font-bold mono cursor-pointer text-white/80'>ABOUT</span>
-          <span className='text-sm font-bold mono cursor-pointer text-white/80'>CONTACT</span>
+        {/* Mobile top bar: hamburger toggle only */}
+        <div className='col-span-4 fixed right-4 mix-blend-difference justify-end lg:hidden'>
+          <button
+            onClick={() => setMenuOpen(true)}
+            aria-label='Open menu'
+            className='w-10 h-10 flex flex-col justify-center items-end gap-[5px]'
+          >
+            <span className='block w-9 h-1 bg-white' />
+            <span className='block w-9 h-1 bg-white' />
+          </button>
         </div>
 
         {/* Left: Intro copy */}
