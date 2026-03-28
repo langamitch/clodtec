@@ -402,7 +402,7 @@ const handleIntroDone = useCallback(() => {
             <span>29.8587° S, 31.0218° E</span>
             <span className='h-8 sm:h-10 w-24 sm:w-32 relative'>
               <Image
-                src="/ct.svg"
+                src="/em.svg"
                 alt="EverythingMoves"
                 fill
                 className="object-contain"

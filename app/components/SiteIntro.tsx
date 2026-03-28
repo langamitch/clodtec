@@ -86,7 +86,7 @@ export default function SiteIntro({ onDone }: SiteIntroProps) {
       className="fixed inset-0 z-[100] flex items-center justify-center price text-white"
     >
       <div className="text-center">
-        <p className="text-sm  mono tracking-tight">
+        <p className="text-sm uppercase mono tracking-tight">
           {SOUTH_AFRICAN_GREETINGS[activeIndex]}
         </p>
       </div>
