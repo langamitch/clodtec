@@ -259,7 +259,7 @@ const handleIntroDone = useCallback(() => {
             </div>
             <div className='flex flex-col gap-0.5 leading-snug'>
               <span>Work with us:</span>
-              <span className='underline cursor-pointer'>hello@cloudtec.studio</span>
+              <span className='underline cursor-pointer'>hello@EverythingMoves.studio</span>
               <span>Founder: Wandile (Kenzo)</span>
             </div>
             <div className='flex flex-col gap-0.5 leading-snug'>
@@ -306,7 +306,7 @@ const handleIntroDone = useCallback(() => {
         >
           <span className='mb-4' style={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}>It doesn't need to be this hard.</span>
           <span className='mb-4' style={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}>
-            Cloudtec is a web experience studio run by{' '}
+            EverythingMoves is a web experience studio run by{' '}
             <span className='underline'>Wandile,</span>
             <span className='underline pl'>Kenzo</span>
             . We build change-making web experiences for B2B founders who refuse to be underestimated.
@@ -402,7 +402,7 @@ const handleIntroDone = useCallback(() => {
             <span className='h-8 sm:h-10 w-24 sm:w-32 relative'>
               <Image
                 src="/ct.svg"
-                alt="Cloudtec"
+                alt="EverythingMoves"
                 fill
                 className="object-contain"
               />
