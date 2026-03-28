@@ -129,9 +129,10 @@ const Page = () => {
     return () => ctx.revert()
   }, [showIntro])   // ← re-runs when showIntro flips to false
 
-  const handleIntroDone = useCallback(() => {
-    setShowIntro(false)   // ← now correctly references the state above
-  }, [])
+const handleIntroDone = useCallback(() => {
+  document.body.classList.add('intro-done')  // ← flips --foreground to black
+  setShowIntro(false)
+}, [])
 
   // ── SIDEBAR OPEN / CLOSE + HAMBURGER MORPH ANIMATION ──
   useEffect(() => {
