@@ -1,11 +1,13 @@
 'use client'
 import Image from 'next/image'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useCallback, useState, useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
+import SiteIntro from "./components/SiteIntro"
 
 const Page = () => {
   const [time, setTime] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [showIntro, setShowIntro] = useState(true)   // ← was missing
   const wrapperRef = useRef<HTMLDivElement>(null)
   const innerScrollRef = useRef<HTMLDivElement>(null)
   const progressRef = useRef<HTMLDivElement>(null)
@@ -31,7 +33,7 @@ const Page = () => {
         new Date().toLocaleTimeString('en-US', {
           hour: '2-digit',
           minute: '2-digit',
-          hour12: true,
+          hour12: false,
         })
       )
     }
@@ -40,8 +42,10 @@ const Page = () => {
     return () => clearInterval(id)
   }, [])
 
-  // ── HERO ENTRANCE ANIMATION (clip-path reveal) ──
+  // ── HERO ENTRANCE ANIMATION — fires only after intro is done ──
   useEffect(() => {
+    if (showIntro) return   // ← wait until intro unmounts
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
@@ -79,7 +83,6 @@ const Page = () => {
         )
       }
 
-      // Mobile pill animation
       if (heroPillMobileRef.current) {
         tl.fromTo(
           heroPillMobileRef.current,
@@ -104,7 +107,6 @@ const Page = () => {
         )
       }
 
-      // Desktop pill animation
       if (heroPillRef.current) {
         tl.fromTo(
           heroPillRef.current,
@@ -125,6 +127,10 @@ const Page = () => {
     })
 
     return () => ctx.revert()
+  }, [showIntro])   // ← re-runs when showIntro flips to false
+
+  const handleIntroDone = useCallback(() => {
+    setShowIntro(false)   // ← now correctly references the state above
   }, [])
 
   // ── SIDEBAR OPEN / CLOSE + HAMBURGER MORPH ANIMATION ──
@@ -216,12 +222,15 @@ const Page = () => {
   }, [])
 
   return (
-    <div>
+    <div className="relative min-h-fit">
+
+      {/* ── SITE INTRO OVERLAY ── */}
+      {showIntro && <SiteIntro onDone={handleIntroDone} />}
 
       {/* ── FULLSCREEN MOBILE SIDEBAR ── */}
       <div
         ref={sidebarRef}
-        className="fixed inset-0 z-50 bg-black flex flex-col lg:hidden"
+        className="fixed inset-0 z-50 price flex flex-col lg:hidden"
         style={{
           clipPath: 'inset(0 0 0 100%)',
           pointerEvents: menuOpen ? 'auto' : 'none',
@@ -307,7 +316,7 @@ const Page = () => {
           </span>
         </div>
 
-        {/* ── MOBILE PILL — visible only below lg, sits between intro and partners ── */}
+        {/* ── MOBILE PILL ── */}
         <div
           ref={heroPillMobileRef}
           className='col-span-4 lg:hidden min-h-40 sm:min-h-60 w-full bg-white rounded-full'
@@ -370,7 +379,7 @@ const Page = () => {
           </div>
         </div>
 
-        {/* ── DESKTOP PILL — hidden on mobile, sits in its original grid position ── */}
+        {/* ── DESKTOP PILL ── */}
         <div
           ref={heroPillRef}
           className='hidden lg:block lg:col-span-12 min-h-40 sm:min-h-60 w-full bg-white rounded-full'
