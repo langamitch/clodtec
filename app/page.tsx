@@ -66,10 +66,17 @@ const Page = () => {
   return (
     <div>
       {/* ── HERO SECTION ── */}
-      <div className='grid p-8 grid-cols-4 lg:grid-cols-12 gap-4 min-h-screen'>
+      <div className='grid p-4 sm:p-6 lg:p-8 grid-cols-4 lg:grid-cols-12 gap-4 min-h-screen'>
+
+        {/* Nav: shown at top on mobile only, hidden on lg (rendered in its own column on lg) */}
+        <div className='col-span-4 flex justify-end gap-4 lg:hidden'>
+          <span className='text-sm font-bold mono cursor-pointer text-white/80'>WORK</span>
+          <span className='text-sm font-bold mono cursor-pointer text-white/80'>ABOUT</span>
+          <span className='text-sm font-bold mono cursor-pointer text-white/80'>CONTACT</span>
+        </div>
 
         {/* Left: Intro copy */}
-        <div className='col-span-4 lg:col-start-1 lg:col-end-5 text-2xl flex flex-col'>
+        <div className='col-span-4 lg:col-start-1 lg:col-end-5 text-xl sm:text-2xl flex flex-col'>
           <span className='mb-4'>It doesn't need to be this hard.</span>
           <span className='mb-4'>
             Cloudtec is a web experience studio run by{' '}
@@ -83,11 +90,11 @@ const Page = () => {
           </span>
         </div>
 
-        {/* Middle: Partnership columns */}
-        <div className='col-span-4 lg:col-start-6 lg:col-end-10 flex justify-between'>
+        {/* Middle: Partnership columns — stack vertically on mobile */}
+        <div className='col-span-4 lg:col-start-6 lg:col-end-10 flex flex-col sm:flex-row sm:justify-between gap-8 sm:gap-4'>
           <div className='flex flex-col'>
             <span className='mono text-sm text-white/80 font-bold mb-4'>BRAND PARTNERSHIP</span>
-            <div className='flex gap-12'>
+            <div className='flex gap-8 sm:gap-12'>
               <div className='flex flex-col'>
                 <span>Apple</span>
                 <span>Netflix</span>
@@ -123,41 +130,38 @@ const Page = () => {
           </div>
         </div>
 
-        {/* Right: CTA */}
-        <div className='col-span-4 lg:col-start-11 lg:col-end-13 flex justify-end h-fit'>
-          {/* Right: CTA <button className='bg-white uppercase mono text-black px-4 py-2 rounded-full text-sm hover:bg-[#0008ff] hover:text-white transition'>
-            Partner with us
-          </button>*/}
+        {/* Right: CTA — desktop only */}
+        <div className='hidden lg:flex col-span-4 lg:col-start-11 lg:col-end-13 justify-end h-fit'>
           <div className='flex justify-between gap-4'>
-          <span className='text-sm font-bold mono cursor-pointer text-white/80'>WORK</span>
-          <span className='text-sm font-bold mono cursor-pointer text-white/80'>ABOUT</span>
-          <span className='text-sm font-bold mono cursor-pointer text-white/80'>CONTACT</span>
-        </div>
-        </div>
-        <div className='min-h-60 col-span-4 lg:col-span-12 w-full bg-white rounded-full'>
-         
+            <span className='text-sm font-bold mono cursor-pointer text-white/80'>WORK</span>
+            <span className='text-sm font-bold mono cursor-pointer text-white/80'>ABOUT</span>
+            <span className='text-sm font-bold mono cursor-pointer text-white/80'>CONTACT</span>
+          </div>
         </div>
 
+        {/* White pill */}
+        <div className='min-h-40 sm:min-h-60 col-span-4 lg:col-span-12 w-full bg-white rounded-full' />
+
         {/* Bottom bar */}
-        <div className='col-span-4 lg:col-span-12 font-bold mono flex justify-between items-end text-sm mt-auto pt-8'>
+        <div className='col-span-4 lg:col-span-12 font-bold mono flex justify-between items-end text-xs sm:text-sm mt-auto pt-8'>
           <div className='flex flex-col'>
             <span className='tabular-nums'>{time}</span>
             <span>SOUTH AFRICA STANDARD TIME</span>
           </div>
-          <div className='flex flex-col'>
+          <div className='flex flex-col items-end'>
             <span>29.8587° S, 31.0218° E</span>
-            <span className='h-10 relative '>
-              <Image src="/ct.svg" 
-                     alt="Cloudtec" 
-                     fill
-                     className="object-contain" />
+            <span className='h-8 sm:h-10 w-24 sm:w-32 relative'>
+              <Image
+                src="/ct.svg"
+                alt="Cloudtec"
+                fill
+                className="object-contain"
+              />
             </span>
           </div>
-         
         </div>
+
       </div>
-
-
     </div>
   )
 }
