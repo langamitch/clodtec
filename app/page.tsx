@@ -306,10 +306,10 @@ const handleIntroDone = useCallback(() => {
     It does not need to be this hard.
   </span>
 
-  <span className='mb-4' style={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}>
+  <span className='mb-4 mt-8 lg:mt-0' style={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}>
     EverythingMoves is a software development studio run by{' '}
-    <span className='underline'>Wandile,</span> mostly known as
-    <span className='underline pl'>Yanda</span>.
+    <span className='underline'>Wandile,</span> mostly known as 
+    <span className='underline pl-1'>Yanda</span>.
     We build scalable, high-impact digital products for B2B founders who refuse to be underestimated.
   </span>
 
@@ -334,7 +334,7 @@ const handleIntroDone = useCallback(() => {
           <div className='partner-col flex flex-col' style={{ clipPath: 'inset(100% 0 0 0)', opacity: 0 }}>
             <span className='mono text-sm text-white/80 font-bold mb-4'>BRAND PARTNERSHIP</span>
             <div className='flex gap-8 sm:gap-12'>
-              <div className='flex text-md flex-col'>
+              <div className='flex text-lg flex-col'>
                 <span>Apple</span>
                 <span>Netflix</span>
                 <span>Meta</span>
@@ -342,7 +342,7 @@ const handleIntroDone = useCallback(() => {
                 <span>Sony</span>
                 <span>Youtube</span>
               </div>
-              <div className='flex text-md flex-col'>
+              <div className='flex text-lg flex-col'>
                 <span>Galxboy</span>
                 <span>Amaxhosa</span>
                 <span>Shein</span>
@@ -355,7 +355,7 @@ const handleIntroDone = useCallback(() => {
 
           <div className='partner-col flex flex-col' style={{ clipPath: 'inset(100% 0 0 0)', opacity: 0 }}>
             <span className='mono text-sm font-bold text-white/80 mb-4'>CELEBRITIES & TALENT</span>
-            <div className='flex flex-col'>
+            <div className='flex text-lg flex-col'>
               <span>Rich Mnisi</span>
               <span>Tait</span>
               <span>Rico Lewis</span>

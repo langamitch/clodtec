@@ -31,8 +31,8 @@ const roobertMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Cloudtec",
-  description: "",
+  title: "EverythingMoves",
+  description: "We help teams design, develop, and ship robust software at scale.",
 };
 
 export default function RootLayout({
