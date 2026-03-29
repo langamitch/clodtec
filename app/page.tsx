@@ -3,6 +3,7 @@ import Image from 'next/image'
 import React, { useCallback, useState, useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import SiteIntro from "./components/SiteIntro"
+import ShaderPill from "./components/ShaderPill"
 
 const Page = () => {
   const [time, setTime] = useState('')
@@ -319,11 +320,11 @@ const handleIntroDone = useCallback(() => {
         </div>
 
         {/* ── MOBILE PILL ── */}
-        <div
-          ref={heroPillMobileRef}
-          className='col-span-4 lg:hidden min-h-40 sm:min-h-60 w-full bg-white rounded-full'
-          style={{ clipPath: 'inset(0 100% 0 0)' }}
-        />
+<ShaderPill
+  ref={heroPillMobileRef}  // ← see note below
+  className='col-span-4 lg:hidden min-h-40 sm:min-h-60 w-full'
+  style={{ clipPath: 'inset(0 100% 0 0)' }}
+/>
 
         {/* Middle: Partnership columns */}
         <div
@@ -382,11 +383,12 @@ const handleIntroDone = useCallback(() => {
         </div>
 
         {/* ── DESKTOP PILL ── */}
-        <div
-          ref={heroPillRef}
-          className='hidden lg:block lg:col-span-12 min-h-40 sm:min-h-60 w-full bg-white rounded-full'
-          style={{ clipPath: 'inset(0 100% 0 0)' }}
-        />
+{/* ── DESKTOP PILL ── */}
+<ShaderPill
+  ref={heroPillRef}
+  className='hidden lg:block lg:col-span-12 min-h-40 sm:min-h-60 w-full'
+  style={{ clipPath: 'inset(0 100% 0 0)' }}
+/>
 
         {/* Bottom bar */}
         <div
