@@ -302,7 +302,7 @@ const handleIntroDone = useCallback(() => {
   ref={heroIntroRef}
   className='col-span-4 lg:col-start-1 lg:col-end-5 text-xl sm:text-2xl flex flex-col'
 >
-  <span className='mb-4' style={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}>
+  <span className='hidden mb-4' style={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}>
     It does not need to be this hard.
   </span>
 
