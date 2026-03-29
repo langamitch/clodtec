@@ -298,22 +298,26 @@ const handleIntroDone = useCallback(() => {
         </div>
 
         {/* Left: Intro copy */}
-        <div
-          ref={heroIntroRef}
-          className='col-span-4 lg:col-start-1 lg:col-end-5 text-xl sm:text-2xl flex flex-col'
-        >
-          <span className='mb-4' style={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}>It doesn't need to be this hard.</span>
-          <span className='mb-4' style={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}>
-            EverythingMoves is a web experience studio run by{' '}
-            <span className='underline'>Wandile,</span> mostly known as
-            <span className='underline pl'>Yanda</span>
-            . We build change-making web experiences for B2B founders who refuse to be underestimated.
-          </span>
-          <span className='mb-4' style={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}>
-            We help teams increase multi-layered media output at scale, eliminating
-            operational drag and burnout, while maximizing cost efficiency.
-          </span>
-        </div>
+<div
+  ref={heroIntroRef}
+  className='col-span-4 lg:col-start-1 lg:col-end-5 text-xl sm:text-2xl flex flex-col'
+>
+  <span className='mb-4' style={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}>
+    It does not need to be this hard.
+  </span>
+
+  <span className='mb-4' style={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}>
+    EverythingMoves is a software development studio run by{' '}
+    <span className='underline'>Wandile,</span> mostly known as
+    <span className='underline pl'>Yanda</span>.
+    We build scalable, high-impact digital products for B2B founders who refuse to be underestimated.
+  </span>
+
+  <span className='mb-4' style={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}>
+    We help teams design, develop, and ship robust software at scale—reducing technical debt,
+    streamlining workflows, and preventing burnout, while maximizing performance and cost efficiency.
+  </span>
+</div>
 
         {/* ── MOBILE PILL ── */}
 <ShaderPill
@@ -382,14 +386,14 @@ const handleIntroDone = useCallback(() => {
 {/* ── DESKTOP PILL ── */}
 <ShaderPill
   ref={heroPillRef}
-  className='hidden lg:block lg:col-span-12 min-h-40 sm:min-h-60 w-full'
+  className='hidden lg:block lg:col-span-12 min-h-35 sm:min-h-60 w-full'
   style={{ clipPath: 'inset(0 100% 0 0)' }}
 />
 
         {/* Bottom bar */}
         <div
           ref={heroBottomRef}
-          className='col-span-4 lg:col-span-12 font-bold mono flex justify-between items-end text-xs sm:text-sm mt-auto pt-8'
+          className='col-span-4 lg:col-span-12 font-bold mono flex justify-between items-end text-xs sm:text-sm mt-auto'
           style={{ clipPath: 'inset(0 100% 0 0)' }}
         >
           <div className='flex flex-col'>
@@ -398,7 +402,7 @@ const handleIntroDone = useCallback(() => {
           </div>
           <div className='flex flex-col items-end'>
             <span>29.8587° S, 31.0218° E</span>
-            <span className='min-h-15 relative'>
+            <span className='h-15 w-32 relative'>
               <Image
                 src="/em.svg"
                 alt="EverythingMoves"
