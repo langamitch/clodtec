@@ -244,7 +244,7 @@ const handleIntroDone = useCallback(() => {
             <span
               key={item}
               onClick={() => setMenuOpen(false)}
-              className='text-white font-bold cursor-pointer uppercase leading-12 hover:opacity-50 transition-opacity'
+              className='text-white  cursor-pointer uppercase leading-12 hover:opacity-50 transition-opacity'
               style={{ fontSize: 'clamp(3.5rem, 20vw, 4rem)' }}
             >
               {item}
@@ -300,7 +300,7 @@ const handleIntroDone = useCallback(() => {
         {/* Left: Intro copy */}
 <div
   ref={heroIntroRef}
-  className='col-span-4 lg:col-start-1 lg:col-end-5 text-xl sm:text-2xl flex flex-col'
+  className='col-span-4 lg:col-start-1 lg:col-end-5 text-lg sm:text-2xl flex flex-col'
 >
   <span className='hidden mb-4' style={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}>
     It does not need to be this hard.
@@ -332,7 +332,7 @@ const handleIntroDone = useCallback(() => {
           className='col-span-4 lg:col-start-6 lg:col-end-10 flex flex-col sm:flex-row sm:justify-between gap-8 sm:gap-4'
         >
           <div className='partner-col flex flex-col' style={{ clipPath: 'inset(100% 0 0 0)', opacity: 0 }}>
-            <span className='mono text-sm text-white/80 font-bold mb-4'>BRAND PARTNERSHIP</span>
+            <span className='mono text-sm text-white/80  mb-4'>BRAND PARTNERSHIP</span>
             <div className='flex gap-8 sm:gap-12'>
               <div className='flex text-lg flex-col'>
                 <span>Apple</span>
@@ -354,7 +354,7 @@ const handleIntroDone = useCallback(() => {
           </div>
 
           <div className='partner-col flex flex-col' style={{ clipPath: 'inset(100% 0 0 0)', opacity: 0 }}>
-            <span className='mono text-sm font-bold text-white/80 mb-4'>CELEBRITIES & TALENT</span>
+            <span className='mono text-sm  text-white/80 mb-4'>CELEBRITIES & TALENT</span>
             <div className='flex text-lg flex-col'>
               <span>Rich Mnisi</span>
               <span>Tait</span>
@@ -376,9 +376,9 @@ const handleIntroDone = useCallback(() => {
             className='flex justify-between gap-4'
             style={{ clipPath: 'inset(0 100% 0 0)' }}
           >
-            <span className='text-sm font-bold mono cursor-pointer text-white/80'>WORK</span>
-            <span className='text-sm font-bold mono cursor-pointer text-white/80'>ABOUT</span>
-            <span className='text-sm font-bold mono cursor-pointer text-white/80'>CONTACT</span>
+            <span className='text-sm mono cursor-pointer text-white/80'>WORK</span>
+            <span className='text-sm mono cursor-pointer text-white/80'>ABOUT</span>
+            <span className='text-sm mono cursor-pointer text-white/80'>CONTACT</span>
           </div>
         </div>
 
@@ -393,7 +393,7 @@ const handleIntroDone = useCallback(() => {
 {/* Bottom bar */}
 <div
   ref={heroBottomRef}
-  className='col-span-4 lg:col-span-12 font-bold mono flex justify-between items-end text-xs sm:text-sm mt-auto'
+  className='col-span-4 lg:col-span-12  mono flex justify-between items-end text-xs sm:text-sm mt-auto'
   style={{ clipPath: 'inset(0 100% 0 0)' }}
 >
   {/* Time & timezone */}
