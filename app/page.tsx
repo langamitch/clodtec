@@ -402,7 +402,7 @@ const handleIntroDone = useCallback(() => {
           </div>
           <div className='flex flex-col items-end'>
             <span>29.8587° S, 31.0218° E</span>
-            <span className='h-8 sm:h-10 w-24 sm:w-32 relative'>
+            <span className='h-15 relative'>
               <Image
                 src="/em.svg"
                 alt="EverythingMoves"
