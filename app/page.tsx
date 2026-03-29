@@ -254,15 +254,11 @@ const handleIntroDone = useCallback(() => {
 
         <div ref={sidebarBottomRef} className='flex-1 flex flex-col justify-end pb-10'>
           <div className='flex flex-col items-center text-center text-white text-sm gap-5'>
-            <div className='flex flex-col gap-0.5 leading-snug'>
-              <span>Durban {time}</span>
-              <span>South Africa 29.8587° S</span>
-              <span>31.0218° E</span>
-            </div>
+         
             <div className='flex flex-col gap-0.5 leading-snug'>
               <span>Work with us:</span>
               <span className='underline cursor-pointer'>hello@EverythingMoves.studio</span>
-              <span>Founder: Wandile (Kenzo)</span>
+
             </div>
             <div className='flex flex-col gap-0.5 leading-snug'>
               <span className='underline cursor-pointer'>Instagram</span>
@@ -309,8 +305,8 @@ const handleIntroDone = useCallback(() => {
           <span className='mb-4' style={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}>It doesn't need to be this hard.</span>
           <span className='mb-4' style={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}>
             EverythingMoves is a web experience studio run by{' '}
-            <span className='underline'>Wandile,</span>
-            <span className='underline pl'>Kenzo</span>
+            <span className='underline'>Wandile,</span> mostly known as
+            <span className='underline pl'>Yanda</span>
             . We build change-making web experiences for B2B founders who refuse to be underestimated.
           </span>
           <span className='mb-4' style={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}>
@@ -334,7 +330,7 @@ const handleIntroDone = useCallback(() => {
           <div className='partner-col flex flex-col' style={{ clipPath: 'inset(100% 0 0 0)', opacity: 0 }}>
             <span className='mono text-sm text-white/80 font-bold mb-4'>BRAND PARTNERSHIP</span>
             <div className='flex gap-8 sm:gap-12'>
-              <div className='flex flex-col'>
+              <div className='flex text-md flex-col'>
                 <span>Apple</span>
                 <span>Netflix</span>
                 <span>Meta</span>
@@ -342,7 +338,7 @@ const handleIntroDone = useCallback(() => {
                 <span>Sony</span>
                 <span>Youtube</span>
               </div>
-              <div className='flex flex-col'>
+              <div className='flex text-md flex-col'>
                 <span>Galxboy</span>
                 <span>Amaxhosa</span>
                 <span>Shein</span>
@@ -402,7 +398,7 @@ const handleIntroDone = useCallback(() => {
           </div>
           <div className='flex flex-col items-end'>
             <span>29.8587° S, 31.0218° E</span>
-            <span className='h-15 relative'>
+            <span className='min-h-15 relative'>
               <Image
                 src="/em.svg"
                 alt="EverythingMoves"
