@@ -400,18 +400,17 @@ const handleIntroDone = useCallback(() => {
             <span className='tabular-nums'>{time}</span>
             <span>SOUTH AFRICA STANDARD TIME</span>
           </div>
-<div className='flex flex-col items-end'>
-  <span>29.8587° S, 31.0218° E</span>
-  <span className='relative w-full'>
-    <Image
-      src="/em.svg"
-      alt="EverythingMoves"
-      width={500}  // arbitrary width for Next.js Image to know aspect ratio
-      height={200} // arbitrary height; actual height will scale automatically
-      className="w-full h-auto object-contain"
-    />
-  </span>
-</div>
+          <div className='flex flex-col items-end'>
+            <span>29.8587° S, 31.0218° E</span>
+            <span className='h-10 w-32 relative'>
+              <Image
+                src="/em.svg"
+                alt="EverythingMoves"
+                fill
+                className="object-contain h-full "
+              />
+            </span>
+          </div>
         </div>
 
       </div>
