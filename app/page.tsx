@@ -390,28 +390,34 @@ const handleIntroDone = useCallback(() => {
   style={{ clipPath: 'inset(0 100% 0 0)' }}
 />
 
-        {/* Bottom bar */}
-        <div
-          ref={heroBottomRef}
-          className='col-span-4 lg:col-span-12 font-bold mono flex justify-between items-end text-xs sm:text-sm mt-auto'
-          style={{ clipPath: 'inset(0 100% 0 0)' }}
-        >
-          <div className='flex flex-col'>
-            <span className='tabular-nums'>{time}</span>
-            <span>SOUTH AFRICA STANDARD TIME</span>
-          </div>
-          <div className='flex flex-col items-end'>
-            <span>29.8587° S, 31.0218° E</span>
-            <span className='h-10 w-32 relative'>
-              <Image
-                src="/em.svg"
-                alt="EverythingMoves"
-                fill
-                className="object-contain h-full "
-              />
-            </span>
-          </div>
-        </div>
+{/* Bottom bar */}
+<div
+  ref={heroBottomRef}
+  className='col-span-4 lg:col-span-12 font-bold mono flex justify-between items-end text-xs sm:text-sm mt-auto'
+  style={{ clipPath: 'inset(0 100% 0 0)' }}
+>
+  {/* Time & timezone */}
+  <div className='flex flex-col'>
+    <span className='tabular-nums'>{time}</span>
+    <span>SOUTH AFRICA STANDARD TIME</span>
+  </div>
+
+  {/* Coordinates & logo */}
+  <div className='flex flex-col items-end'>
+    <span>29.8587° S, 31.0218° E</span>
+
+    {/* Responsive logo */}
+    <span className='relative w-24 sm:w-32 md:w-40 lg:w-48'>
+      <Image
+        src="/em.svg"
+        alt="EverythingMoves"
+        width={500}   // required by Next.js for optimization
+        height={200}  // required by Next.js for optimization
+        className="w-full h-auto object-contain"
+      />
+    </span>
+  </div>
+</div>
 
       </div>
     </div>
