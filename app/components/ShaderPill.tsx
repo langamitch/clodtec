@@ -14,7 +14,7 @@ void main() {
 `
 
 // ─────────────────────────────────────────────
-// Fragment shader
+// Fragment shader — with animated film grain + vignette
 // ─────────────────────────────────────────────
 const FRAG = `
 precision mediump float;
@@ -23,6 +23,25 @@ uniform float uTime;
 uniform float uAmplitude;
 uniform float uReveal;
 varying vec2  vUv;
+
+// ── Hash-based white noise (grain) ──────────────────
+float hash(vec2 p) {
+  p = fract(p * vec2(234.34, 435.345));
+  p += dot(p, p + 34.23);
+  return fract(p.x * p.y);
+}
+
+// ── Smooth value noise (low-freq roll) ──────────────
+float vnoise(vec2 p) {
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  vec2 u = f * f * (3.0 - 2.0 * f);
+  float a = hash(i);
+  float b = hash(i + vec2(1.0, 0.0));
+  float c = hash(i + vec2(0.0, 1.0));
+  float d = hash(i + vec2(1.0, 1.0));
+  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+}
 
 void main() {
   vec2 uv = vUv;
@@ -50,6 +69,28 @@ void main() {
     float r = cos(float(i) * length(centeredUv));
     color = mix(color, uColors[i], r);
   }
+
+  // ── Film grain ───────────────────────────────────────
+  // Animate grain by offsetting UV with time so it flickers each frame
+  float grainSeed = uTime * 0.0001;
+  vec2  grainUv   = vUv * vec2(1280.0, 720.0); // pixel density
+  float grain     = hash(grainUv + grainSeed) * 2.0 - 1.0; // [-1, 1]
+
+  // Coarser low-frequency noise rolled over time for a "dust" layer
+  float dust = vnoise(vUv * 6.0 + uTime * 0.07) * 2.0 - 1.0;
+
+  // Combine: fine grain + coarser structure
+  float noiseVal = grain * 0.055 + dust * 0.018;
+
+  // Scale grain down when reveal is still low (fade in with the image)
+  noiseVal *= uReveal;
+
+  color += noiseVal;
+
+  // ── Vignette ─────────────────────────────────────────
+  float vignette = 1.0 - dot(centeredUv * 0.55, centeredUv * 0.55);
+  vignette = pow(clamp(vignette, 0.0, 1.0), 1.4);
+  color *= mix(0.55, 1.0, vignette);
 
   gl_FragColor = vec4(mix(vec3(0.0), color, uReveal), 1.0);
 }
@@ -89,16 +130,13 @@ const ShaderPill = forwardRef<HTMLDivElement, ShaderPillProps>(
   ({ className = '', style }, ref) => {
     const [hovered, setHovered] = useState(false)
 
-    const canvasRef  = useRef<HTMLCanvasElement>(null)
-    const rafRef     = useRef<number>(0)
-    const labelRef   = useRef<HTMLDivElement>(null)
+    const canvasRef   = useRef<HTMLCanvasElement>(null)
+    const rafRef      = useRef<number>(0)
+    const labelRef    = useRef<HTMLDivElement>(null)
 
-    // Raw cursor target (updated immediately on mousemove)
-    const targetPos  = useRef({ x: 0, y: 0 })
-    // Lagging display position (lerped each frame)
-    const currentPos = useRef({ x: 0, y: 0 })
-    // Whether we should be running the label RAF loop
-    const hoveredRef = useRef(false)
+    const targetPos   = useRef({ x: 0, y: 0 })
+    const currentPos  = useRef({ x: 0, y: 0 })
+    const hoveredRef  = useRef(false)
     const labelRafRef = useRef<number>(0)
 
     const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -113,7 +151,6 @@ const ShaderPill = forwardRef<HTMLDivElement, ShaderPillProps>(
       const rect = e.currentTarget.getBoundingClientRect()
       const x = e.clientX - rect.left
       const y = e.clientY - rect.top
-      // Snap current to target on enter so it doesn't fly in from (0,0)
       currentPos.current = { x, y }
       targetPos.current  = { x, y }
       hoveredRef.current = true
@@ -128,7 +165,7 @@ const ShaderPill = forwardRef<HTMLDivElement, ShaderPillProps>(
     }
 
     function animateLabel() {
-      const LERP = 0.1 // 0 = glued, 1 = instant — tweak for more/less lag
+      const LERP = 0.1
 
       function tick() {
         if (!hoveredRef.current) return

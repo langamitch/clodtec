@@ -260,10 +260,6 @@ const handleIntroDone = useCallback(() => {
               <span className='underline cursor-pointer'>hello@EverythingMoves.studio</span>
 
             </div>
-            <div className='flex flex-col gap-0.5 leading-snug'>
-              <span className='underline cursor-pointer'>Instagram</span>
-              <span className='underline cursor-pointer'>LinkedIn</span>
-            </div>
             <div className='flex flex-col gap-0.5 leading-snug text-white/50 text-xs'>
               <span className='underline cursor-pointer'>Privacy Policy</span>
               <span className='underline cursor-pointer'>Terms of Use</span>
@@ -300,7 +296,7 @@ const handleIntroDone = useCallback(() => {
         {/* Left: Intro copy */}
 <div
   ref={heroIntroRef}
-  className='col-span-4 lg:col-start-1 lg:col-end-5 text-lg sm:text-2xl flex flex-col'
+  className='col-span-4 lg:col-start-1 lg:col-end-5 text-xl sm:text-2xl flex flex-col'
 >
   <span className='hidden mb-4' style={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}>
     It does not need to be this hard.
