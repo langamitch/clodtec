@@ -87,20 +87,64 @@ interface ShaderPillProps {
 
 const ShaderPill = forwardRef<HTMLDivElement, ShaderPillProps>(
   ({ className = '', style }, ref) => {
-    // ✅ FIX 1 & 2: Hooks moved inside the component
     const [hovered, setHovered] = useState(false)
-    const [pos, setPos] = useState({ x: 0, y: 0 })
 
-    const canvasRef = useRef<HTMLCanvasElement>(null)
-    const rafRef    = useRef<number>(0)
+    const canvasRef  = useRef<HTMLCanvasElement>(null)
+    const rafRef     = useRef<number>(0)
+    const labelRef   = useRef<HTMLDivElement>(null)
 
-    // ✅ FIX 3: handleMove moved inside the component so it closes over component state
+    // Raw cursor target (updated immediately on mousemove)
+    const targetPos  = useRef({ x: 0, y: 0 })
+    // Lagging display position (lerped each frame)
+    const currentPos = useRef({ x: 0, y: 0 })
+    // Whether we should be running the label RAF loop
+    const hoveredRef = useRef(false)
+    const labelRafRef = useRef<number>(0)
+
     const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
       const rect = e.currentTarget.getBoundingClientRect()
-      setPos({
+      targetPos.current = {
         x: e.clientX - rect.left,
         y: e.clientY - rect.top,
-      })
+      }
+    }
+
+    const handleEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+      // Snap current to target on enter so it doesn't fly in from (0,0)
+      currentPos.current = { x, y }
+      targetPos.current  = { x, y }
+      hoveredRef.current = true
+      setHovered(true)
+      animateLabel()
+    }
+
+    const handleLeave = () => {
+      hoveredRef.current = false
+      setHovered(false)
+      cancelAnimationFrame(labelRafRef.current)
+    }
+
+    function animateLabel() {
+      const LERP = 0.1 // 0 = glued, 1 = instant — tweak for more/less lag
+
+      function tick() {
+        if (!hoveredRef.current) return
+
+        currentPos.current.x += (targetPos.current.x - currentPos.current.x) * LERP
+        currentPos.current.y += (targetPos.current.y - currentPos.current.y) * LERP
+
+        if (labelRef.current) {
+          labelRef.current.style.left = `${currentPos.current.x + 14}px`
+          labelRef.current.style.top  = `${currentPos.current.y + 14}px`
+        }
+
+        labelRafRef.current = requestAnimationFrame(tick)
+      }
+
+      labelRafRef.current = requestAnimationFrame(tick)
     }
 
     useEffect(() => {
@@ -208,6 +252,7 @@ const ShaderPill = forwardRef<HTMLDivElement, ShaderPillProps>(
 
       return () => {
         cancelAnimationFrame(rafRef.current)
+        cancelAnimationFrame(labelRafRef.current)
         ro.disconnect()
         canvas.removeEventListener('mousedown',  onDown)
         canvas.removeEventListener('touchstart', onDown)
@@ -219,8 +264,8 @@ const ShaderPill = forwardRef<HTMLDivElement, ShaderPillProps>(
     return (
       <div
         ref={ref}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
+        onMouseEnter={handleEnter}
+        onMouseLeave={handleLeave}
         onMouseMove={handleMove}
         className={`relative overflow-hidden rounded-full ${className}`}
         style={style}
@@ -229,15 +274,17 @@ const ShaderPill = forwardRef<HTMLDivElement, ShaderPillProps>(
 
         {hovered && (
           <div
-            className="absolute pointer-events-none transition-transform duration-75 ease-out"
+            ref={labelRef}
+            className="absolute pointer-events-none"
             style={{
-              left: pos.x + 12,
-              top: pos.y + 12,
-              transform: 'translate(-50%, -50%)',
+              left: currentPos.current.x + 14,
+              top:  currentPos.current.y + 14,
+              transform: 'translate(-10%, -50%)',
+              willChange: 'left, top',
             }}
           >
             <div className="price text-white text-sm px-1 mono whitespace-nowrap">
-              <span className='mix-blend-difference'>Hold</span>
+              <span className="mix-blend-difference">Hold</span>
             </div>
           </div>
         )}
