@@ -402,14 +402,15 @@ const handleIntroDone = useCallback(() => {
           </div>
           <div className='flex flex-col items-end'>
             <span>29.8587° S, 31.0218° E</span>
-            <span className='h-15 w-32 relative'>
-              <Image
-                src="/em.svg"
-                alt="EverythingMoves"
-                fill
-                className="object-contain"
-              />
-            </span>
+<span className='h-12 relative'>
+  <Image
+    src="/em.svg"
+    alt="EverythingMoves"
+    height={60} // adjust height as needed
+    width={0}   // width can be auto-calculated if using style below
+    className="h-full w-auto object-contain"
+  />
+</span>
           </div>
         </div>
 
