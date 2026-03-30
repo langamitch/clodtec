@@ -325,21 +325,21 @@ const handleIntroDone = useCallback(() => {
         {/* Middle: Partnership columns */}
         <div
           ref={heroPartnersRef}
-          className='col-span-4 lg:col-start-6 lg:col-end-10 flex flex-col sm:flex-row sm:justify-between gap-8 sm:gap-4'
+          className='col-span-4 lg:col-start-6 lg:col-end-11 flex flex-col sm:flex-row sm:justify-between gap-8 sm:gap-4'
         >
           <div className='partner-col flex flex-col' style={{ clipPath: 'inset(100% 0 0 0)', opacity: 0 }}>
             <span className='mono text-sm text-white/80  mb-4'>DREAM COLLABORATIONS</span>
             <div className='flex gap-8 sm:gap-12'>
               <div className='flex text-lg gap-1 flex-col'>
                 <span>Apple</span>
-                <span>Rare Effect</span>
+                <span>Anthropic</span>
                 <span>Netflix</span>
                 <span>Meta</span>
                 <span>Google</span>
-                <span>Cultish</span>
-                <span>Sony</span>
+                <span>Stripe</span>
               </div>
               <div className='flex gap-1 text-lg flex-col'>
+                <span>Sony</span>
                 <span>Galxboy</span>
                 <span>Youtube</span>
                 <span>Amaxhosa</span>
