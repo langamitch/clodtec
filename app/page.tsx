@@ -328,39 +328,37 @@ const handleIntroDone = useCallback(() => {
           className='col-span-4 lg:col-start-6 lg:col-end-10 flex flex-col sm:flex-row sm:justify-between gap-8 sm:gap-4'
         >
           <div className='partner-col flex flex-col' style={{ clipPath: 'inset(100% 0 0 0)', opacity: 0 }}>
-            <span className='mono text-sm text-white/80  mb-4'>BRAND PARTNERSHIP</span>
+            <span className='mono text-sm text-white/80  mb-4'>DREAM COLLABORATIONS</span>
             <div className='flex gap-8 sm:gap-12'>
               <div className='flex text-lg flex-col'>
                 <span>Apple</span>
+                <span>Rare Effect</span>
                 <span>Netflix</span>
                 <span>Meta</span>
                 <span>Google</span>
+                <span>Cultish</span>
                 <span>Sony</span>
-                <span>Youtube</span>
               </div>
               <div className='flex text-lg flex-col'>
                 <span>Galxboy</span>
+                <span>Youtube</span>
                 <span>Amaxhosa</span>
                 <span>Shein</span>
                 <span>Isthixo</span>
-                <span>Cultish</span>
-                <span>Rare Effect</span>
               </div>
             </div>
           </div>
 
           <div className='partner-col flex flex-col' style={{ clipPath: 'inset(100% 0 0 0)', opacity: 0 }}>
-            <span className='mono text-sm  text-white/80 mb-4'>CELEBRITIES & TALENT</span>
+            <span className='mono text-sm  text-white/80 mb-4'>PEOPLE WE LOOK UP TO</span>
             <div className='flex text-lg flex-col'>
-              <span>Rich Mnisi</span>
-              <span>Tait</span>
-              <span>Rico Lewis</span>
-              <span>Mat Armstrong</span>
-              <span>Sun-El Musician</span>
-              <span>Carl Pei</span>
-              <span>Msaki</span>
-              <span>Nico Mueckay</span>
-              <span>Asif Hassam</span>
+              <span>Scott Yu-Jan - Designer & Content Creator</span>
+              <span>Rich Mnisi - Founder & Creative Director</span>
+              <span>Creig Federighi - SVP of Software engineering, Apple</span>
+              <span>Elon Musk - CEO, Tesla & SpaceX</span>
+              <span>Carl Pei - Founder & CEO, Nothing</span>
+              <span>Tony Fadell - Former Engineer, Apple</span>
+              <span>Matt & Ari - Founders and Developers, Eden</span>
             </div>
           </div>
         </div>
