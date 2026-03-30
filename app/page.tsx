@@ -330,7 +330,7 @@ const handleIntroDone = useCallback(() => {
           <div className='partner-col flex flex-col' style={{ clipPath: 'inset(100% 0 0 0)', opacity: 0 }}>
             <span className='mono text-sm text-white/80  mb-4'>DREAM COLLABORATIONS</span>
             <div className='flex gap-8 sm:gap-12'>
-              <div className='flex text-lg flex-col'>
+              <div className='flex text-lg gap-1 flex-col'>
                 <span>Apple</span>
                 <span>Rare Effect</span>
                 <span>Netflix</span>
@@ -339,7 +339,7 @@ const handleIntroDone = useCallback(() => {
                 <span>Cultish</span>
                 <span>Sony</span>
               </div>
-              <div className='flex text-lg flex-col'>
+              <div className='flex gap-1 text-lg flex-col'>
                 <span>Galxboy</span>
                 <span>Youtube</span>
                 <span>Amaxhosa</span>
@@ -351,7 +351,7 @@ const handleIntroDone = useCallback(() => {
 
           <div className='partner-col flex flex-col' style={{ clipPath: 'inset(100% 0 0 0)', opacity: 0 }}>
             <span className='mono text-sm  text-white/80 mb-4'>PEOPLE WE LOOK UP TO</span>
-            <div className='flex text-lg flex-col'>
+            <div className='flex text-lg gap-1 flex-col'>
               <span>Scott Yu-Jan - Designer & Content Creator</span>
               <span>Rich Mnisi - Founder & Creative Director</span>
               <span>Creig Federighi - SVP of Software engineering, Apple</span>
