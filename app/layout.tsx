@@ -31,7 +31,7 @@ const roobertMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "EverythingMoves",
+  title: "blek.studio",
   description: "We help teams design, develop, and ship robust software at scale.",
 };
 
