@@ -257,7 +257,7 @@ const handleIntroDone = useCallback(() => {
          
             <div className='flex flex-col gap-0.5 leading-snug'>
               <span>Work with us:</span>
-              <span className='underline cursor-pointer'>hello@EverythingMoves.studio</span>
+              <span className='underline cursor-pointer'>hello@blek.studio</span>
 
             </div>
             <div className='flex flex-col gap-0.5 leading-snug text-white/50 text-xs'>
@@ -303,7 +303,7 @@ const handleIntroDone = useCallback(() => {
   </span>
 
   <span className='mb-4 mt-8 lg:mt-0' style={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}>
-    EverythingMoves is a software development studio run by{' '}
+    blek.studio is a software development studio run by{' '}
     <span className='underline'>Wandile,</span> mostly known as 
     <span className='underline pl-1'>Yanda</span>.
     We build scalable, high-impact digital products for B2B founders who refuse to be underestimated.
@@ -404,7 +404,7 @@ const handleIntroDone = useCallback(() => {
     <span className='relative w-24 sm:w-32 md:w-40 lg:w-48'>
       <Image
         src="/em.svg"
-        alt="EverythingMoves"
+        alt="blek.studio"
         width={500}   // required by Next.js for optimization
         height={200}  // required by Next.js for optimization
         className="w-full h-auto object-contain"
