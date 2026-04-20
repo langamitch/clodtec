@@ -8,7 +8,7 @@ type SiteIntroProps = {
 };
 
 const SOUTH_AFRICAN_GREETINGS = [
-  "Sawbona",
+  "blek.studio",
   "Hello",
   "Hallo",
   "Molo",
@@ -20,7 +20,7 @@ const SOUTH_AFRICAN_GREETINGS = [
   "Avuxeni",
   "Lotjhani",
   "Hello",
-  "👋",
+  "Hallo",
   "Sawubona",
   "Molo",
   "Dumela",
